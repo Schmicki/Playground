@@ -6,7 +6,7 @@ This is my personal programming lab. It is mostly low-level C++ and template met
 
 ### Performance & Multithreading
 
-- **[Helper Task System](HelperTaskSystem/)**: Multithreading task scheduler using lock-free algorithms.
+- **[Helper Task System](HelperTaskSystem/#helper-task-system)**: Multithreading task scheduler using lock-free algorithms.
 - **[TLSF Allocator](TLSFAllocator/)**: Two Level Segregated Fit memory allocator for constant-time allocation.
 
 ### Data Structures & Math
