@@ -39,7 +39,12 @@ struct Type2
 	static constexpr int uid = 2;
 };
 
+struct Type3
+{
+	static constexpr int uid = 3;
+};
+
 int main(int argc, char** args)
 {
-	decltype(sortTypeList(TypeList<Type1, Type2, Type0>())) list;
+	decltype(sortTypeList(TypeList<Type3, Type1, Type2, Type0>())) list;
 }

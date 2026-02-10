@@ -1,6 +1,33 @@
-# ThisIsWhatHappensWhenImBored
+# Playground
 
-All the stuff I work on when I feel like I have too much time in my life
+This is my personal programming lab. It is mostly low-level C++ and template metaprogramming.
+
+## Project Overview
+
+### Performance & Multithreading
+
+- **[Helper Task System](HelperTaskSystem/)**: Multithreading task scheduler using lock-free algorithms.
+- **[TLSF Allocator](TLSFAllocator/)**: Two Level Segregated Fit memory allocator for constant-time allocation.
+
+### Data Structures & Math
+
+- **[Red-Black-Tree](RedBlackTree/)**: Fast, self-balancing, node-based binary search tree.
+- **[Containers and Math](ContainersAndMath/)**: Custom implementation of STL style containers (Array, Map, String) and a comprehensive linear algebra library.
+- **Pseudo Random Number Generator**: Fast 32-bit and 64-bit PRNG implementation.
+
+### Templates
+
+- **[Compile-Time Type Sorting](CompileTimeTypeSorting/)**: Template-heavy experiment for sorting types at compile time.
+- **[TypeInfo](TypeInfo/)**: A custom implementation of type traits for template metaprogramming.
+
+### Utilities
+
+- **Time**: Platform independent high-resolution timing in nanoseconds and seconds.
+
+### Web
+
+- **[Wiki Page Design](WikiPageDesign/)**: Wiki UI/UX exploration using HTML and CSS.
 
 ## License
-[MIT License](https://github.com/Schmicki/ThisIsWhatHappensWhenImBored/blob/main/LICENSE)
+
+[MIT License](./LICENSE)

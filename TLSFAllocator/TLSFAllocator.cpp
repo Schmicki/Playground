@@ -37,7 +37,15 @@ TLSFAllocator::~TLSFAllocator()
 
 TLSFAllocator::Node* TLSFAllocator::CreateNode(Void* inHeap, U32 inSize)
 {
-	return NULL;
+	if (inSize < COMBINED_NODE_SIZE)
+		return NULL;
+	
+	Node* node = (Node*)inHeap;
+	node->size = inSize & SIZE_MASK;
+	node->prevSize = 0;
+	node->prevFree = NULL;
+	node->nextFree = NULL;
+	return node;
 }
 
 U8 TLSFAllocator::GetBestIndex(U32 inSize, U32* outX, U32* outY) const
@@ -252,6 +260,25 @@ void TLSFAllocator::Merge(Node* inNode, Node* inNext)
 	inNode->size = size;
 }
 
+//
+// Best Fit Allocation Example
+// -----------------------------------------------------------------------------------------------
+// 
+// - find next largest node
+// - split in two if there is overhead
+// - add overhead as new node to free list
+// - return node
+// 
+// Aligned Allocation Example
+// -----------------------------------------------------------------------------------------------
+// 
+// - find node large enough to fit size + a little overhead for alignment and splitting
+// - if memory isnt aligned, split into unaligned front and aligned node
+// - split in two if there is overhead
+// - add overhead as new node to free list
+// - return node
+// 
+//
 //void* BestFitAllocator::Allocate(U32 inSize, U32 inAlignment, U32* outSize)
 //{
 //	if (inAlignment <= MIN_ALIGNMENT)
@@ -259,9 +286,7 @@ void TLSFAllocator::Merge(Node* inNode, Node* inNext)
 //		Node* node;
 //		Node* overhead;
 //
-//		inSize = AlignUp(inSize, (U32)MIN_ALIGNMENT);
-//
-//		node = Pop(inSize);
+//		node = PopBest(inSize);
 //
 //		if (node == NULL)
 //			return NULL;
@@ -284,7 +309,7 @@ void TLSFAllocator::Merge(Node* inNode, Node* inNext)
 //
 //		inSize = AlignUp(inSize, inAlignment);
 //
-//		overhead = Pop(inSize + inAlignment + COMBINED_NODE_SIZE);
+//		overhead = PopBest(inSize + inAlignment + COMBINED_NODE_SIZE);
 //
 //		if (overhead == NULL)
 //			return NULL;
@@ -308,7 +333,7 @@ void TLSFAllocator::Merge(Node* inNode, Node* inNext)
 //		return GetMem(node);
 //	}
 //}
-
+//
 //void BestFitAllocator::Free(void* inMemory)
 //{
 //	U32 combinedSize;

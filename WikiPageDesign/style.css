@@ -1,0 +1,439 @@
+/***************************************************************************************************
+    Constants  */
+    
+:root {
+    /* Dark Theme */
+    --color: #EEE;
+    --bg-color: #0A0A0A;
+    --transition: 0.3s;
+
+    /* Header */
+    --header-bg: #111A;
+    --header-bgfx: blur(50px);
+    --header-border: 1px solid #333F;
+    --header-nav-hover: #AAA;
+    --header-nav-hover-bg: none;
+
+    /* Menu */
+    --menu-bg: #4448;
+    --menu-bgfx: blur(50px);
+    --menu-border: 1px solid #555F;
+    --menu-border-radius: 16px;
+    --menu-btn-hover: var(--color);
+    --menu-btn-hover-bg: #FFF3;
+    --menu-btn-border-radius: 8px;
+}
+
+/***************************************************************************************************
+
+    0. Body
+
+***************************************************************************************************/
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--color);
+    background: var(--bg-color);
+}
+
+.master-content {
+    padding: 0px 32px;
+    max-width: 60rem;
+    margin: auto;
+}
+
+.material-symbols-rounded {
+    margin: 0px;
+    padding: 0px;
+    vertical-align: text-bottom;
+}
+
+/***************************************************************************************************
+
+    1. Header
+
+***************************************************************************************************/
+
+header {
+    position: sticky;
+    top: 0px;
+    
+    background: var(--header-bg);
+    border-bottom: var(--header-border);
+    
+    padding: 4px 0px;
+    display: flex;
+    align-items: stretch;
+    gap: 0px;
+
+    white-space: nowrap;
+}
+
+header::before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    content: "";
+    backdrop-filter: var(--header-bgfx);
+    z-index: -1;
+}
+
+/***************************************************************************************************
+    1.1 Start Menu  */
+
+.home {
+    align-content: center;
+    position: relative;
+    margin: 0px;
+    padding: 6px 8px;
+    padding: 8px 8px;
+    margin-inline-start: 8px;
+}
+
+.home-content {
+    position: absolute;
+    top: 100%;
+    left: -0px;
+
+    width: max-content;
+    max-height: 350px;
+
+    color: var(--color);
+    background: var(--menu-bg);
+    border: var(--menu-border);
+    border-radius: var(--menu-border-radius);
+    transition: var(--transition), opacity 0.0s;
+    transform-origin: top left;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.home-content::before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    backdrop-filter: var(--menu-bgfx);
+    border-radius: var(--menu-border-radius);
+    z-index: -1;
+}
+
+.home-content,
+.home-content ul {
+    margin: 0px;
+    padding: 0px;
+
+    list-style: none;
+    white-space: nowrap;
+}
+
+.home-content > li {
+    margin: 0px;
+    padding: 16px;
+}
+
+.home-content > li > h3 {
+    margin: 0px;
+    padding: 8px 12px;
+}
+
+.home-content > li  li {
+    padding: 8px 12px;
+    border-radius: var(--menu-btn-border-radius);
+    transition: var(--transition);
+}
+
+/* hover effects */
+.home:hover {
+    color: var(--header-nav-hover);
+    background: var(--header-nav-hover-bg);
+    cursor: default;
+}
+
+.home-content > li  li:hover {
+    background: var(--menu-btn-hover-bg);
+    cursor: pointer;
+}
+
+/* inner borders */
+.home-1, .home-3 {
+    border-bottom: var(--menu-border);
+}
+
+.home-3, .home-4 {
+    border-left: var(--menu-border);
+}
+
+.home-xxx {
+    border-right: var(--menu-border);
+}
+
+/* show start menu */
+.home:not(:hover) .home-content {
+    /* display: none; */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: var(--transition);
+    transform: translate(0px, 0px) scale(1, 0.1) rotate3d(0, 1, 0, 0deg);
+}
+
+/***************************************************************************************************
+    1.2 Navigation  */
+
+header nav {
+    display: flex;
+    align-items: stretch;
+    gap: 0px;
+    margin-inline-end: auto;
+}
+
+header .menu {
+    /* display: none; */
+    align-content: center;
+    position: relative;
+    margin: 0px;
+    padding: 0px 8px;
+}
+
+header .title {
+    align-content: center;
+    padding: 0px 8px;
+}
+
+/* all nav list lists */
+.nav-list,
+.nav-list ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* header list */
+.nav-list {
+    display: flex;
+    align-items: stretch;
+    gap: 0px;
+    padding: 0px;
+}
+
+/* dropdown lists */
+.nav-list ul {
+    color: var(--color);
+    background: var(--menu-bg);
+    border: var(--menu-border);
+    border-radius: var(--menu-border-radius);
+    transition: var(--transition), opacity 0.0s;
+    transform-origin: top;
+    min-width: 128px;
+    padding: 8px 0px;
+}
+
+.nav-list ul::before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    content: "";
+    backdrop-filter: var(--menu-bgfx);
+    border-radius: var(--menu-border-radius);
+    z-index: -1;
+}
+
+/* main dropdown lists */
+.nav-list > li > ul {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* nested dropdown lists */
+.nav-list li li.drop-left ul {
+    position: absolute;
+    top: -9px;
+    right: 100%;
+}
+.nav-list li li.drop-right ul {
+    position: absolute;
+    top: -9px;
+    left: 100%;
+}
+
+/* nav header items */
+.nav-list > li {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0px 8px;
+
+    position: relative;
+    transition: var(--transition);
+}
+
+/* nav dropdown items */
+.nav-list > li li {
+    margin: 0px 8px;
+    padding: 8px 12px;
+    border-radius: var(--menu-btn-border-radius);
+    transition: var(--transition);
+}
+
+.nav-list > li li .material-symbols-rounded {
+    font-size: large;
+}
+
+.nav-list li li.drop-left ul,
+.nav-list li li.drop-right {
+    position: relative;
+}
+
+/* Hover effects */
+.nav-list li > ul {
+    cursor: default;
+}
+
+.nav-list li:hover {
+    cursor: pointer;
+}
+
+.nav-list > li:hover {
+    color: var(--header-nav-hover);
+    background: var(--header-nav-hover-bg);
+}
+
+.nav-list > li li:hover {
+    color: var(--menu-btn-hover);
+    background: var(--menu-btn-hover-bg);
+}
+
+/* show drop menu */
+.nav-list li:not(:hover) > ul {
+    /* display: none; */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scaleY(0.1);
+    transition: var(--transition)
+}
+
+.nav-list > li:not(:hover) > ul {
+    transform: translateX(-50%) scaleY(0.1);
+}
+
+/***************************************************************************************************
+    1.3 Search  */
+
+.nav-search {
+    margin: auto 8px;
+    padding: 4px 6px;
+
+    background: #AAA2;
+    border: 1px solid #AAA4;
+    border-radius: 32px;
+
+    flex: 1 1 20px;
+    max-width: 600px;
+
+    display: flex;
+    align-items: center;
+}
+
+.nav-search input {
+    margin: 0px 4px;
+    padding: 0px 4px;
+    
+    font-size: medium;
+    color: var(--color);
+    background: none;
+    border: none;
+    border-left: 1px solid #AAA0;
+    border-right: 1px solid #AAA0;
+    outline: none;
+
+    flex: 1;
+    width: 55px;
+}
+
+.nav-search input::marker {
+    color: #0A0A0A;
+}
+
+.nav-search input:focus {
+    border-left: 1px solid #AAA4;
+    border-right: 1px solid #AAA4;
+}
+
+/***************************************************************************************************
+    1.4 Tools  */
+
+.tools .more {
+    display: flex;
+    padding: 0px 4px;
+    margin-inline-end: 8px;
+}
+
+.tools .more ul {
+    left: unset;
+    right: 0px;
+    transform: scaleY(1);
+}
+
+.tools .more:not(:hover) ul {
+    left: unset;
+    right: 0px;
+    transform: scaleY(0.1);
+}
+
+/***************************************************************************************************
+    1.5 Responsive Navigation  */
+
+@media (min-width: 901px) {
+    .menu {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-search {
+        max-width: none;
+    }
+
+    nav .nav-list {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        min-height: 100%;
+        z-index: -1;
+
+        background: #0A0A0A;
+
+        display: flex;
+
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    nav .title {
+        display: none;
+    }
+}
+
+/***************************************************************************************************
+    Responsive Start Menu  */
+
+

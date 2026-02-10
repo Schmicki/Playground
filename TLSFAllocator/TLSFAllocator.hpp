@@ -112,6 +112,10 @@ public:
 		return inNode->size & SIZE_MASK;
 	}
 
+	// 
+	// Creates a node from heap memory. Push this node to the free list using 'Push' and let it be
+	// managed by the allocator.
+	// 
 	static Node* CreateNode(Void* inHeap, U32 inSize);
 
 	// 
