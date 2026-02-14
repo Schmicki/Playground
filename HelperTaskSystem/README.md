@@ -4,7 +4,7 @@ A high-performance multithreading task system designed for low-latency job execu
 
 ## Architecture Overview
 
-This system utilizes a **Dynamic Helper** pattern. Unlike static task systems the role `Helper` is fluid. A Helper can transition into a worker and help executing tasks, while another worker can promote itself to the Helper role when becomes idle. This ensures high system throughput and cpu utilization.
+This system utilizes a **Dynamic Helper** pattern. Unlike static task systems the role `Helper` is fluid. A Helper can transition into a worker and help executing tasks, while another worker can promote itself to the Helper role when idle. This ensures high system throughput and cpu utilization.
 
 ## Lock-Free Queues
 
