@@ -41,7 +41,9 @@ int main(int argc, char** args)
 		"\n";
 
 	{
+		// main thread worker
 		WorkerBase* worker;
+		// task system constructor, initializes main thread worker
 		HelperTaskSystem taskSystem(&worker);
 
 		test_loop(0x10)
@@ -50,6 +52,7 @@ int main(int argc, char** args)
 
 			for (U32 i = 0; i < 0x100000; i++)
 			{
+				// create and submit empty tasks for throughput testing
 				TaskHandle task = worker->NewTask(nullptr, nullptr, TaskHandle(), TaskHandle());
 				worker->SubmitTask(task);
 			}
